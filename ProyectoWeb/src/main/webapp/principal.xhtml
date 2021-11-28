@@ -20,7 +20,7 @@
                 
                 <div class="card product">
                     <h:form id="form">
-                        <p:dataView var="product" value="test" rows="12" paginator="true"
+                        <p:dataView var="product" value="#{productoController.productos}" rows="12" paginator="true"
                                     rowsPerPageTemplate="6,12,16"
                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                     gridIcon="pi pi-th-large" listIcon="pi pi-bars">
@@ -35,9 +35,9 @@
                                         <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">INSTOCK</span>
                                     </div>
                                     <div class="product-grid-item-content">
-                                        <p:graphicImage name="../resources/images/image1.jpg" />
-                                        <div class="product-name">Metallica Ceramica</div>
-                                        <div class="product-description">Heavy metal album of Satan</div>
+                                        <p:graphicImage name="#{product.imgProd}" />
+                                        <div class="product-name">#{product.nombreProd}</div>
+                                        <div class="product-description">#{product.descripcionProd}</div>
                                         <p:rating readonly="true" value="4"/>
                                     </div>
                                     <div class="product-grid-item-bottom">
@@ -55,10 +55,10 @@
 
                             <p:dataViewListItem>
                                 <div class="product-list-item">
-                                    <p:graphicImage name="../resources/images/image1.jpg" />
+                                    <p:graphicImage name="#{product.imgProd}" />
                                     <div class="product-list-detail">
-                                        <div class="product-name">Metallica Ceramica</div>
-                                        <div class="product-description">Heavy metal album</div>
+                                        <div class="product-name">#{product.nombreProd}</div>
+                                        <div class="product-description">#{product.descripcionProd}</div>
                                         <p:rating readonly="true" value="5"/>
                                         <i class="pi pi-tag product-category-icon"/><span
                                             class="product-category">CD</span>
