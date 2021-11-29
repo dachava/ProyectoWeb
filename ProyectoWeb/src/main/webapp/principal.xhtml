@@ -14,40 +14,38 @@
          <ui:composition template="./resources/plantillas/plantilla.xhtml">
 
             <ui:define name="content">
-                <h1>Bienvenido ${usuarioController.emailUsuario}</h1>
-                <p>Su nombre es: ${usuarioController.nombreUsuario}</p>
-                <p>Su perfil es: ${usuarioController.idRol}</p>
                 
                 <div class="card product">
                     <h:form id="form">
                         <p:dataView var="product" value="#{productoController.productos}" rows="12" paginator="true"
                                     rowsPerPageTemplate="6,12,16"
                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                    gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+                                    gridIcon="pi pi-th-large"
+                                    layout="grid"
+                                    paginatorAlwaysVisible="false">
 
                             <p:dataViewGridItem>
                                 <div class="product-grid-item card border-1">
                                     <div class="product-grid-item-top">
                                         <div>
                                             <i class="pi pi-tag product-category-icon"/>
-                                            <span class="product-category">CD</span>
+                                            <span class="product-category">#{productoController.getCategoria(product.idCategoria)}</span>
                                         </div>
-                                        <span class="product-badge status-#{product.inventoryStatus.name().toLowerCase()}">INSTOCK</span>
+                                        <span class="product-badge.status-instock">#{productoController.getStock(product.cantidadProd)}</span>
                                     </div>
                                     <div class="product-grid-item-content">
                                         <p:graphicImage name="#{product.imgProd}" />
                                         <div class="product-name">#{product.nombreProd}</div>
                                         <div class="product-description">#{product.descripcionProd}</div>
-                                        <p:rating readonly="true" value="4"/>
                                     </div>
                                     <div class="product-grid-item-bottom">
-                                        <h:outputText value="" styleClass="product-price">
-                                            <f:convertNumber currencySymbol="$" type="currency"/>
+                                        <h:outputText value="#{product.precioProd}" styleClass="product-price">
+                                            <f:convertNumber currencySymbol="₡" type="currency"/>
                                         </h:outputText>
                                         <p:commandButton type="button"
                                                             value="Add To Cart"
                                                             icon="pi pi-shopping-cart"
-                                                            disabled="#{product.inventoryStatus == 'OUTOFSTOCK'}">
+                                                            disabled="#{product.cantidadProd == 0}">
                                         </p:commandButton>
                                     </div>
                                 </div>
@@ -59,20 +57,19 @@
                                     <div class="product-list-detail">
                                         <div class="product-name">#{product.nombreProd}</div>
                                         <div class="product-description">#{product.descripcionProd}</div>
-                                        <p:rating readonly="true" value="5"/>
                                         <i class="pi pi-tag product-category-icon"/><span
-                                            class="product-category">CD</span>
+                                            class="product-category">#{productoController.getCategoria(product.idCategoria)}</span>
                                     </div>
                                     <div class="product-list-action">
-                                        <h:outputText value="" styleClass="product-price">
-                                            <f:convertNumber currencySymbol="$" type="currency"/>
+                                        <h:outputText value="#{product.precioProd}" styleClass="product-price">
+                                            <f:convertNumber currencySymbol="₡" type="currency"/>
                                         </h:outputText>
                                         <p:commandButton type="button"
                                                          value="Add To Cart"
                                                          icon="pi pi-shopping-cart"
                                                          disabled="OUTOFSTOCK">
                                         </p:commandButton>
-                                        <span class="product-badge">INSTOCK</span>
+                                        <span class="product-badge">#{productoController.getStock(product.cantidadProd)}</span>
                                     </div>
                                 </div>
                             </p:dataViewListItem>
