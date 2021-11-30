@@ -23,7 +23,7 @@ public class ProductoController extends Producto implements Serializable {
         return ProductoGestion.getProductos();
     }
     
-     
+     //Muestra la categoria segun el ID
      public String getCategoria(int cat){
          
          String categoria=new String();
@@ -58,7 +58,7 @@ public class ProductoController extends Producto implements Serializable {
          return categoria;
      }
      
-     
+     //Muestra cuanto stock queda dependiendo de la cantidad en la BD
      public String getStock(int cantidad){
          
          String stockStatus = new String();
@@ -73,5 +73,45 @@ public class ProductoController extends Producto implements Serializable {
          }
          return stockStatus;
      }
+     
+     //CRUD
+     //Insert
+     
+     public String inserta (){
+        
+        if (ProductoGestion.insertar(this)){
+            return "ProductoList.xhtml";
+        }else{
+            FacesMessage mensaje= new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Error","Posible Identificación Duplicada");
+            FacesContext.getCurrentInstance().addMessage("editaProductoForm:identificacion", mensaje);
+            return "ProductoEdit.xhtml";
+        }
+    }
+     
+     //Edita lista
+     public String edita (String id){
+        
+        Producto producto=  ProductoGestion.getProducto(id);
+        
+        if (producto !=null){
+            
+            this.setIdProd(producto.getIdProd());
+            this.setNombreProd(producto.getNombreProd());
+            this.setDescripcionProd(producto.getDescripcionProd());
+            this.setPrecioProd(producto.getPrecioProd());
+            this.setImgProd(producto.getImgProd());
+            this.setCantidadProd(producto.getCantidadProd());
+            this.setIdCategoria(producto.getIdCategoria());
+            return "ProductoEdit.xhtml";
+        }else{
+            
+            FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+            "Error","Posiblemente el id no exista");
+            FacesContext.getCurrentInstance().addMessage("listForm", mensaje);
+            return "ProductoList.xhtml";
+        }
+        
+    }
      
 }

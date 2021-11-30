@@ -40,8 +40,8 @@ public class ProductoGestion {
             
         return producto;
     } 
-    
-     private static final String SQL_SELECT_PRODUCTOS= "Select * from producto";
+    //Lista
+    private static final String SQL_SELECT_PRODUCTOS= "Select * from producto";
     
     public static ArrayList<Producto> getProductos (){
         
@@ -68,6 +68,32 @@ public class ProductoGestion {
         }
         
         return productList;
+    }
+    
+    //CRUD
+    //Insert
+    
+    private static final String SQL_INSERT_PRODUCTO = "insert into producto (idProd, nombreProd,descripcionProd,precioProd,imgProd,cantidadProd,idCategoria) values (?,?,?,?,?,?,?)";
+    
+    public static boolean insertar (Producto producto){
+        
+        try{
+            PreparedStatement sentencia=  Conexion.getConexion().prepareCall(SQL_INSERT_PRODUCTO);
+            sentencia.setString(1,producto.getIdProd());
+            sentencia.setString(2,producto.getNombreProd());
+            sentencia.setString(3,producto.getDescripcionProd());
+            sentencia.setFloat(4,producto.getPrecioProd());
+            sentencia.setString(5,producto.getImgProd());
+            sentencia.setInt(6,producto.getCantidadProd());
+            sentencia.setInt(7,producto.getIdCategoria());
+            
+            return sentencia.executeUpdate()>0;//Devuelve un true en caso de que sea posible insertar el registro
+            
+        }catch (SQLException ex){
+            Logger.getLogger(ProductoGestion.class.getName()).log(Level.SEVERE,null, ex);
+        }
+        
+        return false;
     }
     
 }

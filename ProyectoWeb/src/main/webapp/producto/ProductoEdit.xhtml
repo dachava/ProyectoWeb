@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Edición de Producto</title>
+    </h:head>
+    <h:body>
+         <ui:composition template="./../resources/plantillas/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form id="editaProductoForm">
+                    <b:panel title="Producto" look="primary">
+                        
+                        <b:row tooltip="La identificación no se modifica">
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Identificación" for="identificacion"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Identificación" id="idProd"
+                                             required="true"
+                                             value="#{productoController.idProd}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="identificacion"/>
+                            </b:column>  
+                        </b:row>
+                        
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Nombre" for="nombre"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Nombre" id="nombreProd"
+                                             required="true"
+                                             value="#{productoController.nombreProd}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="nombre"/>
+                            </b:column>  
+                        </b:row>
+                        
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Descripcion" for="descripcionProd"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Descripcion" id="descripcionProd"
+                                             required="true"
+                                             value="#{productoController.descripcionProd}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="descripcionProd"/>
+                            </b:column>  
+                        </b:row>
+                        
+                         <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Precio" for="precioProd"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Precio" id="precioProd"
+                                             required="true"
+                                             value="#{productoController.precioProd}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="precioProd"/>
+                            </b:column>  
+                        </b:row>
+                        
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Ruta de Img" for="imgProd"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Ruta de Img" id="imgProd"
+                                                  required="true"
+                                                  value="#{productoController.imgProd}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="imgProd"/>
+                            </b:column>        
+                        </b:row>
+                        
+                         <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Cantidad" for="cantidadProd"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Cantidad" id="cantidadProd"
+                                                  required="true"
+                                                  value="#{productoController.cantidadProd}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="cantidadProd"/>
+                            </b:column>        
+                        </b:row>
+                        
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="ID Cat" for="idCategoria"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="ID Cat" id="idCategoria"
+                                                  required="true"
+                                                  value="#{productoController.idCategoria}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="idCategoria"/>
+                            </b:column>
+                        </b:row>
+                        
+                        <b:row>
+                            <b:column medium-screen="2"/>
+                            <b:column medium-screen="6">
+                                <b:commandButton value="Insertar"
+                                                 action="#{productoController.inserta()}"
+                                                 look="primary"
+                                                 style="width: 33%"/>
+                                <b:commandButton value="Eliminar"
+                                                 action="#{productoController.elimina()}"
+                                                 look="danger"
+                                                 style="width: 33%"/>
+                                <b:commandButton value="Modificar"
+                                                 action="#{productoController.modifica()}"
+                                                 look="success"
+                                                 style="width: 33%"/>                
+                            </b:column> 
+                        </b:row>     
+                    </b:panel>
+                </h:form>  
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
