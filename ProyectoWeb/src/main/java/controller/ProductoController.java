@@ -5,6 +5,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import gestion.ProductoGestion;
+import java.util.ArrayList;
 import java.util.List;
 import modelo.Producto;
 import javax.faces.application.FacesMessage;
@@ -15,6 +16,7 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class ProductoController extends Producto implements Serializable {
 
+    ArrayList<Producto> cart= new ArrayList<>();
     
     public ProductoController() {
     }
@@ -22,6 +24,7 @@ public class ProductoController extends Producto implements Serializable {
      public List<Producto> getProductos(){
         return ProductoGestion.getProductos();
     }
+     
     
      //Muestra la categoria segun el ID
      public String getCategoria(int cat){
@@ -114,4 +117,27 @@ public class ProductoController extends Producto implements Serializable {
         
     }
      
+     
+     //Agregar al carrito
+     public String addToCart (String id){
+        
+        Producto producto=  ProductoGestion.getProducto(id);
+        
+        if (producto !=null){
+            cart.add(producto);
+            FacesContext.getCurrentInstance()
+                    .addMessage("form:cartAction", new FacesMessage(FacesMessage.SEVERITY_INFO, "Info Message", "Message Content"));        }
+        
+        else{
+            FacesContext.getCurrentInstance()
+                    .addMessage("form:cartAction", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Message Content."));
+        }
+        return null;
+        
+    }
+
+    public ArrayList<Producto> getCart() {
+        return cart;
+    }
+  
 }
