@@ -14,13 +14,13 @@ public class ProductoGestion {
     
     private static final String SQL_SELECT_PRODUCTO = "select * from producto where idProd=?";
     
-    public static Producto getProducto(String id){
+    public static Producto getProducto(String idProd){
         
         Producto producto = null; 
         
         try{
             PreparedStatement consulta= Conexion.getConexion().prepareStatement(SQL_SELECT_PRODUCTO);
-            consulta.setString(1, id);
+            consulta.setString(1, idProd);
             ResultSet datos=  consulta.executeQuery();
             
             if (datos.next()){
@@ -95,5 +95,45 @@ public class ProductoGestion {
         
         return false;
     }
+    //UPDATE
+    private static final String SQL_UPDATE_PRODUCTO = "update producto set nombreProd=?,descripcionProd=?,precioProd=?,imgProd=?,cantidadProd=?,idCategoria=? where idProd=?";
+    
+    public static boolean actualiza (Producto producto){
+        
+        try{
+            PreparedStatement sentencia= Conexion.getConexion().prepareCall(SQL_UPDATE_PRODUCTO);
+            sentencia.setString(1,producto.getNombreProd());
+            sentencia.setString(2,producto.getDescripcionProd());
+            sentencia.setFloat(3,producto.getPrecioProd());
+            sentencia.setString(4,producto.getImgProd());
+            sentencia.setInt(5,producto.getCantidadProd());
+            sentencia.setInt(6,producto.getIdCategoria());
+            sentencia.setString(7,producto.getIdProd());
+            
+            return sentencia.executeUpdate()>0;
+            
+        }catch (SQLException ex){
+            Logger.getLogger(ProductoGestion.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        
+        return false; 
+        
+    }
+    //DELETE
+    private static final String SQL_DELETE_PRODUCTO = "delete from producto where idProd=?";
+    
+    public static boolean eliminar (Producto producto){
+        
+        try{
+            PreparedStatement consulta= Conexion.getConexion().prepareStatement(SQL_DELETE_PRODUCTO);
+            consulta.setString(1, producto.getIdProd());
+            
+            return consulta.executeUpdate()>0;
+        }catch (SQLException ex){
+            Logger.getLogger(ProductoGestion.class.getName()).log(Level.SEVERE,null, ex);
+        }
+        return false;
+    }
+    
     
 }

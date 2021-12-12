@@ -7,7 +7,7 @@
       xmlns:f = "http://java.sun.com/jsf/core">
     
     <h:head>
-        <title>Principal</title>
+        <title>Carrito</title>
     </h:head>
     <h:body>
         
@@ -38,10 +38,18 @@
                                             <f:convertNumber currencySymbol="₡" type="currency"/>
                                         </h:outputText>
                                         <span class="product-badge">#{productoController.getStock(product.cantidadProd)}</span>
+                                        <p:commandButton value="Eliminar"
+                                                 action="#{productoController.eliminarCarrito()}"
+                                                
+                                                 style="width: 100%"></p:commandButton>
                                     </div>
                                 </div>
                             </p:dataViewListItem>
                         </p:dataView>
+                        <p:commandButton value="Checkout"
+                                                 action="#{productoController.checkout()}"
+                                                
+                                                 style="width: 33%"></p:commandButton>
                     </h:form>
                 </div>
                 

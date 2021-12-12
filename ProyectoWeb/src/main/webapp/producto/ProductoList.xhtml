@@ -12,7 +12,10 @@
         <ui:composition template="./../resources/plantillas/plantilla.xhtml">
 
             <ui:define name="content">
+                
                 <h:form>
+                    <b:commandButton value="Insertar"
+                                             action="#{productoController.inserta()}"/>
                     <b:dataTable value="#{productoController.productos}"
                                  var="producto"
                                  excel="true"

@@ -93,9 +93,9 @@ public class ProductoController extends Producto implements Serializable {
     }
      
      //Edita lista
-     public String edita (String id){
+     public String edita (String idProd){
         
-        Producto producto=  ProductoGestion.getProducto(id);
+        Producto producto=  ProductoGestion.getProducto(idProd);
         
         if (producto !=null){
             
@@ -116,10 +116,38 @@ public class ProductoController extends Producto implements Serializable {
         }
         
     }
+     //Update
+     public String modifica (){
+        
+        if (ProductoGestion.actualiza(this)){
+            return "ProductoList.xhtml";
+            
+        }else{
+            FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+            "Error","Posible Identificación Duplicada");
+            FacesContext.getCurrentInstance().addMessage("editaProductoForm:idProd", mensaje);
+            return "ProductoEdit.xhtml";
+        }
+        
+    }
+    //Delete
+    public String elimina (){
+        
+        if (ProductoGestion.eliminar(this)){
+            return "ProductoList.xhtml";
+        }else{
+            FacesMessage mensaje= new FacesMessage (FacesMessage.SEVERITY_ERROR,
+            "Error", "Posible que el id no exista");
+            FacesContext.getCurrentInstance().addMessage("editaProductoForm:identificacion", mensaje);
+            return "ProductoEdit.xhtml";
+        }
+        
+    }
      
      
      //Agregar al carrito
      public String addToCart (String id){
+         
         
         Producto producto=  ProductoGestion.getProducto(id);
         
@@ -139,5 +167,6 @@ public class ProductoController extends Producto implements Serializable {
     public ArrayList<Producto> getCart() {
         return cart;
     }
+    
   
 }
