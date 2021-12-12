@@ -169,4 +169,8 @@ public class ProductoController extends Producto implements Serializable {
     }
     
   
+    public void limpiarCart(){
+        cart = new ArrayList<>();
+    }
+    
 }

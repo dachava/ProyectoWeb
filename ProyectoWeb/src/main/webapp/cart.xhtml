@@ -17,14 +17,20 @@
                 
                 <div class="card product">
                     <h:form id="form">
+                        <p:commandButton value="Limpiar Carrito"
+                                         action="#{productoController.limpiarCart()}"
+                                         update="@form"
+                                         style="width: 100%">
+                        </p:commandButton>
                         <p:dataView var="product" value="#{productoController.cart}" rows="12" paginator="true"
                                     rowsPerPageTemplate="6,12,16"
                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                     gridIcon="pi pi-th-large"
                                     layout="list"
                                     paginatorAlwaysVisible="false">
-
+                           
                             <p:dataViewListItem>
+                                
                                 <div class="product-list-item">
                                     <p:graphicImage name="#{product.imgProd}" />
                                     <div class="product-list-detail">
