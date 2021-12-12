@@ -7,7 +7,7 @@
       xmlns:f = "http://java.sun.com/jsf/core">
     
     <h:head>
-        <title>Carrito</title>
+        <title>Checkout</title>
     </h:head>
     <h:body>
         
@@ -17,11 +17,7 @@
                 
                 <div class="card product">
                     <h:form id="form">
-                        <p:commandButton value="Limpiar Carrito"
-                                         action="#{productoController.limpiarCart()}"
-                                         update="@form"
-                                         style="width: 100%">
-                        </p:commandButton>
+                        
                         <p:dataView var="product" value="#{productoController.cart}" rows="12" paginator="true"
                                     rowsPerPageTemplate="6,12,16"
                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -52,10 +48,8 @@
                                 </div>
                             </p:dataViewListItem>
                         </p:dataView>
-                        <h:outputText value="Total: ₡#{productoController.sumaPrecio()}" styleClass="product-price"/>
-                                            
-                                        
-                        <p:commandButton value="Confirmar Compra"
+                        
+                        <p:commandButton value="Checkout"
                                                  action="#{productoController.checkout()}"
                                                 
                                                  style="width: 33%"></p:commandButton>

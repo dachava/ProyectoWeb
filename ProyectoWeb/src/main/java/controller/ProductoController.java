@@ -173,4 +173,22 @@ public class ProductoController extends Producto implements Serializable {
         cart = new ArrayList<>();
     }
     
+    public float sumaPrecio() {
+
+        float total = 0;
+        for (int i = 0; i <= (cart.size()-1); i++) {
+            total = total + cart.get(i).getPrecioProd();
+        }
+
+        return total;
+    }
+    
+    public String checkout (){
+        
+        sumaPrecio();
+        return "checkout.xhtml";
+        
+    }
+    
+    
 }
