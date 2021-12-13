@@ -33,12 +33,10 @@
                                             <i class="pi pi-tag product-category-icon"/>
                                             <span class="product-category">#{productoController.getCategoria(product.idCategoria)}</span>
                                         </div>
-                                        <span class="product-badge-status-#{productoController.getStockStatus(product.cantidadProd)}">#{productoController.getStock(product.cantidadProd)}</span>
+                                        <span class="product-badge.status-instock">#{productoController.getStock(product.cantidadProd)}</span>
                                     </div>
                                     <div class="product-grid-item-content">
-                                        <p:graphicImage name="#{product.imgProd}"
-                                                        width="295.2"
-                                                        height="295.2"/>
+                                        <p:graphicImage name="#{product.imgProd}" />
                                         <div class="product-name">#{product.nombreProd}</div>
                                         <div class="product-description">#{product.descripcionProd}</div>
                                     </div>

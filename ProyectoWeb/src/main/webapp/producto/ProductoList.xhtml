@@ -14,10 +14,8 @@
             <ui:define name="content">
                 
                 <h:form>
-                    <h3>Administrar Productos en Inventario</h3>
-                    <b:commandButton value="Insertar Producto"
-                                             action="#{productoController.inserta()}"
-                                             look="primary"/>
+                    <b:commandButton value="Insertar"
+                                             action="#{productoController.inserta()}"/>
                     <b:dataTable value="#{productoController.productos}"
                                  var="producto"
                                  excel="true"

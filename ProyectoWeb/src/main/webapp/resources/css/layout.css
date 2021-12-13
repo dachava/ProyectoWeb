@@ -1217,31 +1217,13 @@ pre[class*="language-"].line-numbers > code {
   font-size: 12px;
   letter-spacing: .3px; 
 }
-.product-badge-status-3 {
+  .product-badge.status-instock {
     background: #C8E6C9;
-    color: #256029;
-    border-radius: 2px;
-    padding: .25em .5rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: .3px;}
-.product-badge-status-1 {
-    border-radius: 2px;
-    padding: .25em .5rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: .3px;
+    color: #256029; }
+  .product-badge.status-outofstock {
     background: #FFCDD2;
     color: #C63737; }
-.product-badge-status-2 {
-    border-radius: 2px;
-    padding: .25em .5rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: .3px;
+  .product-badge.status-lowstock {
     background: #FEEDAF;
     color: #8A5340; }
 
