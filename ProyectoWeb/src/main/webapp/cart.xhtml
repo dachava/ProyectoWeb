@@ -21,8 +21,8 @@
                         <p:dataView var="product" value="#{productoController.cart}" rows="12" paginator="true"
                                     rowsPerPageTemplate="6,12,16"
                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                    gridIcon="pi pi-th-large"
-                                    layout="list"
+                                    listIcon="pi pi-bars"
+                                    layout="list"                            
                                     paginatorAlwaysVisible="false">
                            
                             <p:dataViewListItem>
@@ -42,30 +42,29 @@
                                         <span class="product-badge">#{productoController.getStock(product.cantidadProd)}</span>
                                         <p:commandButton value="Eliminar"
                                                  action="#{productoController.eliminarCarrito()}"
-                                                
+                                                 
                                                  style="width: 100%"></p:commandButton>
                                     </div>
                                 </div>
                             </p:dataViewListItem>
                         </p:dataView>
                         <p:panel>
-                            <h:outputText value="Total: ₡#{productoController.sumaPrecio()}" class="Subtotal"/>
+                            <h:outputText value="Total: ₡#{productoController.sumaPrecio()}" style="Subtotal" styleClass="Subtotal"/>
                                             
                                         
-                        <p:commandButton value="Confirmar Compra"
+                        <p:commandButton id="comprar" value="Confirmar Compra"
                                                  action="#{productoController.compra()}"
-                                                 
-                                                 style="width: 35%; 
-                                                 
+                                                 style="width: 35%;                                                  
                                                  margin: auto;
-                                                 float: right" ></p:commandButton>
+                                                 float: right"
+                                                >
+                        </p:commandButton>
                                                  
                          <p:commandButton value="Limpiar Carrito"
                                          action="#{productoController.limpiarCart()}"
                                          update="@form"
                                          style="width: 35%;
                                          margin-left: 80px;
-                                         
                                          float: right">
                         </p:commandButton>
                         </p:panel>

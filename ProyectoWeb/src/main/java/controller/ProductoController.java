@@ -191,6 +191,15 @@ public class ProductoController extends Producto implements Serializable {
     public void limpiarCart(){
         cart = new ArrayList<>();
     }
+ 
+    public String isCartEmpty() {
+        if (cart.size() > 0) {
+            return "lleno";
+        } else {
+            return "vacio";
+        }
+    }
+    
     
     public float sumaPrecio() {
 
@@ -246,5 +255,6 @@ public class ProductoController extends Producto implements Serializable {
             FacesContext.getCurrentInstance().addMessage("editaProductoForm:identificacion", mensaje);
         }
     }
+    
 
 }

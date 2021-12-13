@@ -50,6 +50,7 @@
                                         <p:commandButton id="cartAction"
                                                          value="Agregar al Carrito"
                                                          icon="pi pi-shopping-cart"
+                                                         disabled="#{productoController.getStockStatus(product.cantidadProd) == 1}"
                                                          actionListener="#{productoController.addToCart(product.idProd)}"
                                                          update="growl">
                                         </p:commandButton>                                               

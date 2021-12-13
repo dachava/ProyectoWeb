@@ -24,8 +24,8 @@
     <h:body>
         <h:form id="loginForm">
             <b:container fluid="true">
-            <b:panel title="login" look="primary" collapsed="false" style-class="centrado">
-                <b:row tooltip="El usuario ya debe estar registrado">
+                <b:panel title="Iniciar Sesión" look="primary" collapsed="false" style-class="centrado" collapsible="false">
+                <b:row>
                     <b:column medium-screen="1"/>
                     <b:column medium-screen="10">
                         <b:inputText placeholder="Correo"
@@ -43,7 +43,7 @@
                     </b:column>
                 </b:row>
                 
-                <b:row tooltip="La clave no se ve">
+                <b:row>
                     <b:column medium-screen="1"/>
                     <b:column medium-screen="10">
                         <b:inputSecret placeholder="Clave"
@@ -60,7 +60,7 @@
                     </b:column>
                 </b:row>
                 
-                <b:row tooltip="De click en login">
+                <b:row>
                     <b:column medium-screen="1"/>
                     <b:column medium-screen="10">
                         <b:commandButton value="Login"
