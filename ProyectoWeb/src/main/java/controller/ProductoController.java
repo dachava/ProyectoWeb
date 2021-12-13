@@ -208,7 +208,7 @@ public class ProductoController extends Producto implements Serializable {
     public String compra() {
         if (transaccion() == true) {
             insertaOrden();
-            return "principal.xhtml";
+            return "factura.xhtml";
 
         } else {
             return null;
