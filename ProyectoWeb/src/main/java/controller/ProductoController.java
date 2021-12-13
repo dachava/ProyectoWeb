@@ -77,8 +77,23 @@ public class ProductoController extends Producto implements Serializable {
          } else {
              stockStatus = "Disponible";
          }
-         return stockStatus;
-     }
+        return stockStatus;
+    }
+
+    public int getStockStatus(int cantidad) {
+
+        int stockStatus;
+        if (cantidad <= 0) {
+            stockStatus = 1;
+        }
+        if (cantidad < 10) {
+            stockStatus = 2;
+        } else {
+            stockStatus = 3;
+        }
+        
+        return stockStatus;
+    }
      
      //CRUD
      //Insert
