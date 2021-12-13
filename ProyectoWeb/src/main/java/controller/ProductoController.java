@@ -10,7 +10,10 @@ import java.util.List;
 import modelo.Producto;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+        
+        
 
 @Named(value = "productoController")
 @SessionScoped
@@ -190,5 +193,42 @@ public class ProductoController extends Producto implements Serializable {
         
     }
     
+    public boolean transaccion() {
+        try {
+            for (int i = 0; i <= (cart.size() - 1); i++) {
+                String idProd = cart.get(i).getIdProd();
+                ProductoGestion.transaccion(idProd);
+            }
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
     
+    public String compra() {
+        if (transaccion() == true) {
+            insertaOrden();
+            return "principal.xhtml";
+
+        } else {
+            return null;
+        }
+    }
+    
+
+    public void insertaOrden() {
+
+        if (ProductoGestion.insertarOrden(new Gson().toJson(cart)) == true) {
+            limpiarCart();
+            FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO,
+                    "Completado", "Articulos enviados");
+            FacesContext.getCurrentInstance().addMessage("editaProductoForm:identificacion", mensaje);
+        } 
+        else{
+            FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Error", "Posible Identificación Duplicada");
+            FacesContext.getCurrentInstance().addMessage("editaProductoForm:identificacion", mensaje);
+        }
+    }
+
 }

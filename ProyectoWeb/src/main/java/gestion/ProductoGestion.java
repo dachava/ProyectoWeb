@@ -8,7 +8,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Conexion;
 import modelo.Producto;
+import modelo.Orden;
 import java.util.ArrayList;
+import controller.ProductoController;
 
 public class ProductoGestion {
     
@@ -135,5 +137,44 @@ public class ProductoGestion {
         return false;
     }
     
+    //Actualizar cant de items en DB
+    private static final String SQL_UPDATE_CANT_CART = "update producto set cantidadProd = cantidadProd-1 where idProd=?";
+    
+    public static boolean transaccion (String idProd){
+        
+        try{
+            PreparedStatement sentencia= Conexion.getConexion().prepareCall(SQL_UPDATE_CANT_CART);
+            
+            sentencia.setString(1,idProd);
+            
+            return sentencia.executeUpdate()>0;
+            
+        }catch (SQLException ex){
+            Logger.getLogger(ProductoGestion.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        
+        return false; 
+        
+    }
+    //Insert Orden
+    
+     private static final String SQL_INSERT_ORDEN = "insert into orden (descOrden) values (?)";
+    
+    public static boolean insertarOrden (String orden){
+        
+        try{
+            PreparedStatement sentencia=  Conexion.getConexion().prepareCall(SQL_INSERT_ORDEN);
+         
+            sentencia.setString(1,orden);
+           
+            
+            return sentencia.executeUpdate()>0;//Devuelve un true en caso de que sea posible insertar el registro
+            
+        }catch (SQLException ex){
+            Logger.getLogger(ProductoGestion.class.getName()).log(Level.SEVERE,null, ex);
+        }
+        
+        return false;
+    }
     
 }
