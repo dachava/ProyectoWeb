@@ -17,11 +17,7 @@
                 
                 <div class="card product">
                     <h:form id="form">
-                        <p:commandButton value="Limpiar Carrito"
-                                         action="#{productoController.limpiarCart()}"
-                                         update="@form"
-                                         style="width: 100%">
-                        </p:commandButton>
+                       
                         <p:dataView var="product" value="#{productoController.cart}" rows="12" paginator="true"
                                     rowsPerPageTemplate="6,12,16"
                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -52,13 +48,28 @@
                                 </div>
                             </p:dataViewListItem>
                         </p:dataView>
-                        <h:outputText value="Total: ₡#{productoController.sumaPrecio()}" styleClass="product-price"/>
+                        <p:panel>
+                            <h:outputText value="Total: ₡#{productoController.sumaPrecio()}" class="Subtotal"/>
                                             
                                         
                         <p:commandButton value="Confirmar Compra"
                                                  action="#{productoController.compra()}"
-                                                
-                                                 style="width: 33%"></p:commandButton>
+                                                 
+                                                 style="width: 35%; 
+                                                 
+                                                 margin: auto;
+                                                 float: right" ></p:commandButton>
+                                                 
+                         <p:commandButton value="Limpiar Carrito"
+                                         action="#{productoController.limpiarCart()}"
+                                         update="@form"
+                                         style="width: 35%;
+                                         margin-left: 80px;
+                                         
+                                         float: right">
+                        </p:commandButton>
+                        </p:panel>
+                        
                     </h:form>
                 </div>
                 
