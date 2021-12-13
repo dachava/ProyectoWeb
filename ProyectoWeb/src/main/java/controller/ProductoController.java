@@ -150,18 +150,19 @@ public class ProductoController extends Producto implements Serializable {
      
      //Agregar al carrito
      public String addToCart (String id){
-         
-        
+
         Producto producto=  ProductoGestion.getProducto(id);
         
         if (producto !=null){
             cart.add(producto);
             FacesContext.getCurrentInstance()
-                    .addMessage("form:cartAction", new FacesMessage(FacesMessage.SEVERITY_INFO, "Info Message", "Message Content"));        }
+                    .addMessage("form:dvgi", new FacesMessage(FacesMessage.SEVERITY_INFO, "Confirmación", "Agregó el producto "
+                            + producto.getNombreProd()+" al carrito."));        }
         
         else{
             FacesContext.getCurrentInstance()
-                    .addMessage("form:cartAction", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Message Content."));
+                    .addMessage("form:dvgi", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El producto no se "
+                            + "pudo agregar al carrito. Intentelo de nuevo más tarde."));
         }
         return null;
         

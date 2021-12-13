@@ -17,6 +17,7 @@
                 
                 <div class="card product">
                     <h:form id="form">
+                        
                         <p:dataView var="product" value="#{productoController.productos}" rows="12" paginator="true"
                                     rowsPerPageTemplate="6,12,16"
                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -24,7 +25,8 @@
                                     layout="grid"
                                     paginatorAlwaysVisible="false">
 
-                            <p:dataViewGridItem>
+                            <p:dataViewGridItem id="dvgi">
+                                <p:growl id="growl" showDetail="true" sticky="false"/>
                                 <div class="product-grid-item card border-1">
                                     <div class="product-grid-item-top">
                                         <div>
@@ -46,14 +48,13 @@
                                         <p:commandButton id="cartAction"
                                                          value="Agregar al Carrito"
                                                          icon="pi pi-shopping-cart"
-                                                         action="#{productoController.addToCart(product.idProd)}">
-                                        </p:commandButton>
-                                                  
+                                                         actionListener="#{productoController.addToCart(product.idProd)}"
+                                                         update="growl">
+                                        </p:commandButton>                                               
                                     </div>
-                                    
                                 </div>
                             </p:dataViewGridItem>
-
+                            
                         </p:dataView>
                     </h:form>
                 </div>
