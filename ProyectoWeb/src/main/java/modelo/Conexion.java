@@ -13,14 +13,14 @@ public class Conexion {
     
     private static Conexion conexion;
     //String de conexión a la base de datos
-    private static final String DBURL = "jdbc:mysql://deploydb.cb54jen3twey.us-east-2.rds.amazonaws.com:3306/vinyl?zeroDateTimeBehavior=CONVERT_TO_NULL";
+    private static final String DBURL = "jdbc:oracle:thin:@localhost:1521:proyecto";
     private static Connection conn=null;
     
     private Conexion(){
         
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-            conn= DriverManager.getConnection(DBURL,"vinyl_user","Dp123456");
+            Class.forName("oracle.jdbc.driver.OracleDriver").getDeclaredConstructor().newInstance();
+            conn= DriverManager.getConnection(DBURL,"dchavarria","12345");
         }catch (ClassNotFoundException | SQLException | NoSuchMethodException | SecurityException | 
                 InstantiationException | IllegalAccessException | IllegalArgumentException 
                 | InvocationTargetException ex){
