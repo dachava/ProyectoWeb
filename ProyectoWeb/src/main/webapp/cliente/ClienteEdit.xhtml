@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Edición de Producto</title>
+    </h:head>
+    <h:body>
+         <ui:composition template="./../resources/plantillas/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form id="editaClienteForm">
+                    <b:panel title="Producto" look="primary">
+                        
+                        <b:row tooltip="La identificación no se modifica">
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Identificación" for="idProd"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Identificación" id="idCliente"
+                                             required="true"
+                                             value="#{clienteController.idCliente}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="idProd"/>
+                            </b:column>  
+                        </b:row>
+                        
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Nombre" for="nombre"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Nombre" id="nombre"
+                                             required="true"
+                                             value="#{clienteController.nombre}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="nombre"/>
+                            </b:column>  
+                        </b:row>
+                        
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Apellidos" for="apellidos"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Apellidos" id="apellidos"
+                                             required="true"
+                                             value="#{clienteController.apellidos}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="apellidos"/>
+                            </b:column>  
+                        </b:row>
+                        
+                         <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Direccion" for="direccion"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Direccion" id="direccion"
+                                             required="true"
+                                             value="#{clienteController.direccion}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="precioProd"/>
+                            </b:column>  
+                        </b:row>
+                        
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Correo" for="correo"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Correo" id="correo"
+                                                  required="true"
+                                                  value="#{clienteController.correo}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="correo"/>
+                            </b:column>        
+                        </b:row>
+                        
+                         <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Telefono" for="telefono"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Telefono" id="telefono"
+                                                  required="true"
+                                                  value="#{clienteController.telefono}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="Telefono"/>
+                            </b:column>        
+                        </b:row>
+                        
+                       
+                        
+                        <b:row>
+                            <b:column medium-screen="2"/>
+                            <b:column medium-screen="6">
+                                <b:commandButton value="Insertar"
+                                                 action="#{clienteController.inserta()}"
+                                                 look="primary"
+                                                 style="width: 33%"/>
+                                <b:commandButton value="Eliminar"
+                                                 action="#{clienteController.elimina()}"
+                                                 look="danger"
+                                                 style="width: 33%"/>
+                                <b:commandButton value="Modificar"
+                                                 action="#{clienteController.modifica()}"
+                                                 look="success"
+                                                 style="width: 33%"/>                
+                            </b:column> 
+                        </b:row>     
+                    </b:panel>
+                </h:form>  
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

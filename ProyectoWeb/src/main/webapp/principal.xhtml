@@ -15,52 +15,11 @@
 
             <ui:define name="content">
                 
-                <div class="card product">
-                    <h:form id="form">
+                <h1>Bienvenido Usuario</h1>
                         
-                        <p:dataView var="product" value="#{productoController.productos}" rows="12" paginator="true"
-                                    rowsPerPageTemplate="6,12,16"
-                                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                    gridIcon="pi pi-th-large"
-                                    layout="grid"
-                                    paginatorAlwaysVisible="false">
-
-                            <p:dataViewGridItem id="dvgi">
-                                <p:growl id="growl" showDetail="true" sticky="false"/>
-                                <div class="product-grid-item card border-1">
-                                    <div class="product-grid-item-top">
-                                        <div>
-                                            <i class="pi pi-tag product-category-icon"/>
-                                            <span class="product-category">#{productoController.getCategoria(product.idCategoria)}</span>
-                                        </div>
-                                        <span class="product-badge-status-#{productoController.getStockStatus(product.cantidadProd)}">#{productoController.getStock(product.cantidadProd)}</span>
-                                    </div>
-                                    <div class="product-grid-item-content">
-                                        <p:graphicImage name="#{product.imgProd}"
-                                                        width="295.2"
-                                                        height="295.2"/>
-                                        <div class="product-name">#{product.nombreProd}</div>
-                                        <div class="product-description">#{product.descripcionProd}</div>
-                                    </div>
-                                    <div class="product-grid-item-bottom">
-                                        <h:outputText value="#{product.precioProd}" styleClass="product-price">
-                                            <f:convertNumber currencySymbol="₡" type="currency"/>
-                                        </h:outputText>
-                                        
-                                        <p:commandButton id="cartAction"
-                                                         value="Agregar al Carrito"
-                                                         icon="pi pi-shopping-cart"
-                                                         disabled="#{productoController.getStockStatus(product.cantidadProd) == 1}"
-                                                         actionListener="#{productoController.addToCart(product.idProd)}"
-                                                         update="growl">
-                                        </p:commandButton>                                               
-                                    </div>
-                                </div>
-                            </p:dataViewGridItem>
-                            
-                        </p:dataView>
-                    </h:form>
-                </div>
+                        
+                    
+               
                 
               </ui:define>
 

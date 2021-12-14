@@ -12,33 +12,24 @@
         <h:outputStylesheet library="css" name="cssLayout.css"/>
         <h:outputStylesheet library="css" name="layout.css"/>
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces"/>
-        <title>Vinyl Shop</title>
+        <title>Sistema de Paquetes</title>
     </h:head>
 
     <h:body>
 
-        <b:navBar fluid="true" brand="Vinyl Shop"
+        <b:navBar fluid="true" brand="Paquetes"
                   brandHref="/ProyectoWeb/faces/principal.xhtml">
             <b:navbarLinks pull="left">
                 <b:image library="images" name="vinyllogo.png" height="55px"/>
             </b:navbarLinks>
             <b:navbarLinks>
-                <b:dropMenu value="Productos" icon-awesome="fa-tags">
-                    <b:navLink value="Administrar Productos" icon="fa-newspaper-o"
-                               href="/ProyectoWeb/faces/producto/ProductoList.xhtml"/>
+                <b:dropMenu value="Clientes" icon-awesome="fa-tags">
+                    <b:navLink value="Administrar Clientes" icon="fa-newspaper-o"
+                               href="/ProyectoWeb/faces/cliente/ClienteList.xhtml"/>
                 </b:dropMenu>
             </b:navbarLinks>
             
-            <b:navbarLinks pull="right" style-class="hidden-xs">
-                <b:navLink value="Mi Carrito"
-                               href="/ProyectoWeb/faces/cart.xhtml"
-                               icon-awesome="fa-shopping-cart"/>
-                <b:dropMenu value="Perfil" icon-awesome="fa-user-circle">
-                    <b:navLink value="Iniciar Sesión"
-                               href="/ProyectoWeb/faces/index.xhtml"
-                               icon-awesome="fa-door-open"/>
-                </b:dropMenu>
-            </b:navbarLinks>
+            
                       
         </b:navBar>
        

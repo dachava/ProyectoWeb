@@ -41,9 +41,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-		<groupId>com.oracle</groupId>
+		<groupId>com.oracle.database.jdbc</groupId>
 		<artifactId>ojdbc8</artifactId>
-		<version>19.3</version>
+		<version>19.3.0.0</version>
 	</dependency>
          <dependency>
             <groupId>org.primefaces</groupId>
@@ -73,6 +73,12 @@
             <name>JasperReports CE Releases</name>
             <url>https://jaspersoft.jfrog.io/jaspersoft/jr-ce-releases</url>
         </repository>
+        <repository>
+            <id>ojdbc8</id>
+            <name>Oracle JDBC</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+        
     </repositories>
     
      <build>

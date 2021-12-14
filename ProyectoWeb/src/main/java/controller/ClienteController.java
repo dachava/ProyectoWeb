@@ -36,160 +36,73 @@ public class ClienteController extends Cliente implements Serializable {
      public String inserta (){
         
         if (ClienteGestion.insertar(this)){
-            return "ProductoList.xhtml";
+            return "ClienteList.xhtml";
         }else{
             FacesMessage mensaje= new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Error","Posible Identificación Duplicada");
-            FacesContext.getCurrentInstance().addMessage("editaProductoForm:identificacion", mensaje);
-            return "ProductoEdit.xhtml";
+            FacesContext.getCurrentInstance().addMessage("editaClienteForm:identificacion", mensaje);
+            return "ClienteEdit.xhtml";
         }
     }
      
      //Edita lista
-     public String edita (String idProd){
+     public String edita (String idCliente){
         
-        Producto producto=  ProductoGestion.getProducto(idProd);
+        Cliente cliente=  ClienteGestion.getCliente(idCliente);
         
-        if (producto !=null){
+        if (cliente !=null){
             
-            this.setIdProd(producto.getIdProd());
-            this.setNombreProd(producto.getNombreProd());
-            this.setDescripcionProd(producto.getDescripcionProd());
-            this.setPrecioProd(producto.getPrecioProd());
-            this.setImgProd(producto.getImgProd());
-            this.setCantidadProd(producto.getCantidadProd());
-            this.setIdCategoria(producto.getIdCategoria());
-            return "ProductoEdit.xhtml";
+            this.setIdCliente(cliente.getIdCliente());
+            this.setNombre(cliente.getNombre());
+            this.setApellidos(cliente.getApellidos());
+            this.setDireccion(cliente.getDireccion());
+            this.setCorreo(cliente.getCorreo());
+            this.setTelefono(cliente.getTelefono());
+         
+            return "ClienteEdit.xhtml";
         }else{
             
             FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_ERROR,
             "Error","Posiblemente el id no exista");
             FacesContext.getCurrentInstance().addMessage("listForm", mensaje);
-            return "ProductoList.xhtml";
+            return "ClienteList.xhtml";
         }
         
     }
      //Update
      public String modifica (){
         
-        if (ProductoGestion.actualiza(this)){
-            return "ProductoList.xhtml";
+        if (ClienteGestion.actualiza(this)){
+            return "ClienteList.xhtml";
             
         }else{
             FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_ERROR,
             "Error","Posible Identificación Duplicada");
-            FacesContext.getCurrentInstance().addMessage("editaProductoForm:idProd", mensaje);
-            return "ProductoEdit.xhtml";
+            FacesContext.getCurrentInstance().addMessage("editaClienteForm:idProd", mensaje);
+            return "ClienteEdit.xhtml";
         }
         
     }
     //Delete
     public String elimina (){
         
-        if (ProductoGestion.eliminar(this)){
-            return "ProductoList.xhtml";
+        if (ClienteGestion.eliminar(this)){
+            return "ClienteList.xhtml";
         }else{
             FacesMessage mensaje= new FacesMessage (FacesMessage.SEVERITY_ERROR,
             "Error", "Posible que el id no exista");
-            FacesContext.getCurrentInstance().addMessage("editaProductoForm:identificacion", mensaje);
-            return "ProductoEdit.xhtml";
+            FacesContext.getCurrentInstance().addMessage("editaClienteForm:identificacion", mensaje);
+            return "ClienteEdit.xhtml";
         }
         
     }
      
      
-     //Agregar al carrito
-     public String addToCart (String id){
-
-        Producto producto=  ProductoGestion.getProducto(id);
-        
-        if (producto !=null){
-            cart.add(producto);
-            FacesContext.getCurrentInstance()
-                    .addMessage("form:dvgi", new FacesMessage(FacesMessage.SEVERITY_INFO, "Confirmación", "Agregó el producto "
-                            + producto.getNombreProd()+" al carrito."));        }
-        
-        else{
-            FacesContext.getCurrentInstance()
-                    .addMessage("form:dvgi", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "El producto no se "
-                            + "pudo agregar al carrito. Intentelo de nuevo más tarde."));
-        }
-        return null;
-        
-    }
-
-    public ArrayList<Producto> getCart() {
-        return cart;
-    }
+    
+    
+ 
     
   
-    public void limpiarCart(){
-        cart = new ArrayList<>();
-    }
- 
-    public String isCartEmpty() {
-        if (cart.size() > 0) {
-            return "lleno";
-        } else {
-            return "vacio";
-        }
-    }
-    
-    
-    public float sumaPrecio() {
-
-        float total = 0;
-        for (int i = 0; i <= (cart.size()-1); i++) {
-            total = total + cart.get(i).getPrecioProd();
-        }
-
-        return total;
-    }
-    
-    public String checkout (){
-        
-        sumaPrecio();
-        return "checkout.xhtml";
-        
-    }
-    
-    public boolean transaccion() {
-        try {
-            for (int i = 0; i <= (cart.size() - 1); i++) {
-                String idProd = cart.get(i).getIdProd();
-                ProductoGestion.transaccion(idProd);
-            }
-            return true;
-        } catch (Exception ex) {
-            return false;
-        }
-    }
-    
-    public String compra() {
-        if (transaccion() == true) {
-            insertaOrden();
-            return "factura.xhtml";
-
-        } else {
-            return null;
-        }
-    }
-    
-
-    public void insertaOrden() {
-
-        if (ProductoGestion.insertarOrden(new Gson().toJson(cart)) == true) {
-            limpiarCart();
-            FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO,
-                    "Completado", "Articulos enviados");
-            FacesContext.getCurrentInstance().addMessage("editaProductoForm:identificacion", mensaje);
-        } 
-        else{
-            FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "Error", "Posible Identificación Duplicada");
-            FacesContext.getCurrentInstance().addMessage("editaProductoForm:identificacion", mensaje);
-        }
-    }
     
 
 }
