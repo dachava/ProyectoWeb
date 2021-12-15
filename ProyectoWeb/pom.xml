@@ -73,11 +73,7 @@
             <name>JasperReports CE Releases</name>
             <url>https://jaspersoft.jfrog.io/jaspersoft/jr-ce-releases</url>
         </repository>
-        <repository>
-            <id>ojdbc8</id>
-            <name>Oracle JDBC</name>
-            <url>https://repo1.maven.org/maven2/</url>
-        </repository>
+        
         
     </repositories>
     

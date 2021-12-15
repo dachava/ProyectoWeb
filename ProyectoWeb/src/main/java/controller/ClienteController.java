@@ -24,7 +24,7 @@ public class ClienteController extends Cliente implements Serializable {
     public ClienteController() {
     }
     
-     public List<Cliente> getProductos(){
+     public List<Cliente> getClientes(){
         return ClienteGestion.getClientes();
     }
      
