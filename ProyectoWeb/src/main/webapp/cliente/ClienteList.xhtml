@@ -16,7 +16,7 @@
                 <h:form>
                     <h3>Administrar Clientes</h3>
                     <b:commandButton value="Insertar Producto"
-                                             action="#{clienteController.inserta()}"
+                                             action="ClienteEdit.xhtml"
                                              look="primary"/>
                     <b:dataTable value="#{clienteController.clientes}"
                                  var="cliente"
@@ -42,7 +42,7 @@
                                            width="10%"
                                            style="text-align: center"
                                            label="Correo"/>
-                        <b:dataTableColumn value="#{producto.telefono}"
+                        <b:dataTableColumn value="#{cliente.telefono}"
                                            width="10%"
                                            style="text-align: center"
                                            label="Telefono"/>

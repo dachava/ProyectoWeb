@@ -41,7 +41,7 @@ public class ClienteGestion {
         return cliente;
     } 
     //Lista
-    private static final String SQL_SELECT_CLIENTES= "Select * from cliente";
+    private static final String SQL_SELECT_CLIENTES= "select id_cliente, nombre, apellidos, direccion, correo, telefono from cliente";
     
     public static ArrayList<Cliente> getClientes (){
         
@@ -54,11 +54,11 @@ public class ClienteGestion {
             
             while (rs!=null && rs.next()){
                 clienteList.add(new Cliente (
-                            rs.getInt(2),
+                            rs.getInt(1),
+                            rs.getString(2),
                             rs.getString(3),
                             rs.getString(4),
                             rs.getString(5),
-                            rs.getString(6),
                             rs.getString(6)));
             }
             
@@ -101,17 +101,18 @@ public class ClienteGestion {
         
         try{
             PreparedStatement sentencia= Conexion.getConexion().prepareCall(SQL_UPDATE_CLIENTE);
-            sentencia.setInt(1,cliente.getIdCliente());
-            sentencia.setString(2,cliente.getNombre());
-            sentencia.setString(3,cliente.getApellidos());
-            sentencia.setString(4,cliente.getDireccion());
-            sentencia.setString(5,cliente.getCorreo());
-            sentencia.setString(6,cliente.getTelefono());
+            
+            sentencia.setString(1,cliente.getNombre());
+            sentencia.setString(2,cliente.getApellidos());
+            sentencia.setString(3,cliente.getDireccion());
+            sentencia.setString(4,cliente.getCorreo());
+            sentencia.setString(5,cliente.getTelefono());
+            sentencia.setInt(6,cliente.getIdCliente());
             
             
             return sentencia.executeUpdate()>0;
             
-        }catch (SQLException ex){
+        }catch (Exception ex){
             Logger.getLogger(ClienteGestion.class.getName()).log(Level.SEVERE,null,ex);
         }
         

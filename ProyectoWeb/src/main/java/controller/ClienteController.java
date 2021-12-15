@@ -19,7 +19,7 @@ import com.google.gson.GsonBuilder;
 @SessionScoped
 public class ClienteController extends Cliente implements Serializable {
 
-    ArrayList<Cliente> cart= new ArrayList<>();
+    
     
     public ClienteController() {
     }
@@ -40,7 +40,7 @@ public class ClienteController extends Cliente implements Serializable {
         }else{
             FacesMessage mensaje= new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Error","Posible Identificación Duplicada");
-            FacesContext.getCurrentInstance().addMessage("editaClienteForm:identificacion", mensaje);
+            FacesContext.getCurrentInstance().addMessage("editaClienteForm:idCliente", mensaje);
             return "ClienteEdit.xhtml";
         }
     }
@@ -78,7 +78,7 @@ public class ClienteController extends Cliente implements Serializable {
         }else{
             FacesMessage mensaje = new FacesMessage(FacesMessage.SEVERITY_ERROR,
             "Error","Posible Identificación Duplicada");
-            FacesContext.getCurrentInstance().addMessage("editaClienteForm:idProd", mensaje);
+            FacesContext.getCurrentInstance().addMessage("editaClienteForm:idCliente", mensaje);
             return "ClienteEdit.xhtml";
         }
         
@@ -91,7 +91,7 @@ public class ClienteController extends Cliente implements Serializable {
         }else{
             FacesMessage mensaje= new FacesMessage (FacesMessage.SEVERITY_ERROR,
             "Error", "Posible que el id no exista");
-            FacesContext.getCurrentInstance().addMessage("editaClienteForm:identificacion", mensaje);
+            FacesContext.getCurrentInstance().addMessage("editaClienteForm:idCliente", mensaje);
             return "ClienteEdit.xhtml";
         }
         
