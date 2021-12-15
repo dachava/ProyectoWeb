@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Edición de Paquetes</title>
+    </h:head>
+    <h:body>
+         <ui:composition template="./../resources/plantillas/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form id="editaPaqueteForm">
+                    <b:panel title="Producto" look="primary">
+                        
+                        <b:row tooltip="La identificación no se modifica">
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Identificación" for="idPaquete"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Identificación" id="idPaquete"
+                                             required="true"
+                                             value="#{paqueteController.idPaquete}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="idPaquete"/>
+                            </b:column>  
+                        </b:row>
+                        
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Descripcion" for="desc"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Descripcion" id="desc"
+                                             required="true"
+                                             value="#{paqueteController.desc}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="desc"/>
+                            </b:column>  
+                        </b:row>
+                        
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Peso" for="peso"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Peso" id="peso"
+                                             required="true"
+                                             value="#{paqueteController.peso}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="peso"/>
+                            </b:column>  
+                        </b:row>
+                        
+                         <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Origen" for="origen"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Direccion" id="origen"
+                                             required="true"
+                                             value="#{paqueteController.origen}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="origen"/>
+                            </b:column>  
+                        </b:row>
+                        
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Estado" for="estado"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Estado" id="estado"
+                                                  required="true"
+                                                  value="#{paqueteController.estado}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="correo"/>
+                            </b:column>        
+                        </b:row>
+                        
+                         <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Valor" for="valor"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Valor" id="valor"
+                                                  required="true"
+                                                  value="#{paqueteController.valor}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="Valor"/>
+                            </b:column>        
+                        </b:row>
+                        
+                       
+                        
+                        <b:row>
+                            <b:column medium-screen="2"/>
+                            <b:column medium-screen="6">
+                                <b:commandButton value="Insertar"
+                                                 action="#{paqueteController.inserta()}"
+                                                 look="primary"
+                                                 style="width: 33%"/>
+                                <b:commandButton value="Eliminar"
+                                                 action="#{paqueteController.elimina()}"
+                                                 look="danger"
+                                                 style="width: 33%"/>
+                                <b:commandButton value="Modificar"
+                                                 action="#{paqueteController.modifica()}"
+                                                 look="success"
+                                                 style="width: 33%"/>                
+                            </b:column> 
+                        </b:row>     
+                    </b:panel>
+                </h:form>  
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
