@@ -34,12 +34,11 @@
                         <b:dataTableColumn value="#{cliente.direccion}"
                                            width="19%"
                                            label="Direccion"/>
-                        
-                        
-                        
                             
-                        
                     </b:dataTable>
+                    
+                    <h:outputText value="#{clienteController.dbmsOutput}"/>
+                    <b:commandButton actionListener="#{clienteController.startDbmsOutput()}" title="Procedimiento"/>
                     
                 </h:form>
                                     

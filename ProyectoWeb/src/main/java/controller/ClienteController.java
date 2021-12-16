@@ -12,6 +12,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.sql.SQLException;
         
         
 
@@ -105,7 +106,17 @@ public class ClienteController extends Cliente implements Serializable {
         }
         
     }
+    
+    public void startDbmsOutput() throws SQLException{
+        getDbmsOutput();
+    }
      
+    public String getDbmsOutput() throws SQLException{
+        
+    return ClienteGestion.dbmsOutput();
+    }
+
+    
      
     
     

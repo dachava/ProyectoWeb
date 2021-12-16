@@ -175,9 +175,10 @@ public class ClienteGestion {
     //DBMS OUTPUT LINE
     private static final String SQL_STORED_PROC= "execute p_departments_update(90)";
     
-    public static void dbmsOutput() throws SQLException {
+    public static String dbmsOutput() throws SQLException {
 
         Statement consulta = Conexion.getConexion().createStatement();
+        String output = null;
 
         try {
 
@@ -199,27 +200,24 @@ public class ClienteGestion {
                     + "  dbms_output.get_lines(?, num);"
                     + "end;"
             )) {
-                call.registerOutParameter(1, Types.ARRAY,
-                        "DBMSOUTPUT_LINESARRAY");
+                call.registerOutParameter(1, Types.VARCHAR);
                 call.execute();
 
-                Array array = null;
+                
                 try {
-                    array = call.getArray(1);
-                    Stream.of((Object[]) array.getArray());
-                            
-                } finally {
-                    if (array != null) {
-                        array.free();
-                    }
+                    output = call.getString(1);          
+                }
+                catch(Exception ex){
+                    Logger.getLogger(ClienteGestion.class.getName()).log(Level.SEVERE,null,ex);    
                 }
             }
-        } // Don't forget to disable DBMS_OUTPUT for the remaining use
-        // of the connection.
+        }
         finally {
             consulta.executeUpdate("begin dbms_output.disable(); end;");
         }
+        return output;
     }
+    
 }
    
     
