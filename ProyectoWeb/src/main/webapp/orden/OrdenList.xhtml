@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Listado de Ordenes</title>
+    </h:head>
+    <h:body>
+        
+        <ui:composition template="./../resources/plantillas/plantilla.xhtml">
+
+            <ui:define name="content">
+                
+                <h:form>
+                    <h3>Administrar Ordens</h3>
+                    <b:commandButton value="Insertar Producto"
+                                             action="OrdenEdit.xhtml"
+                                             look="primary"/>
+                    <b:dataTable value="#{ordenController.ordens}"
+                                 var="orden"
+                                 excel="true"
+                                 csv="true"
+                                 pdf="true"
+                                 columnVisibility="true"
+                                 copy="true"
+                                 print="true">
+                        <b:dataTableColumn value="#{orden.idOrden}"
+                                           label="Id Orden"
+                                           width="8%"/>
+                        <b:dataTableColumn value="#{orden.idCliente}"
+                                           width="15%"
+                                           label="Id Cliente"/>
+                        <b:dataTableColumn value="#{orden.idPaquete}"
+                                           width="19%"
+                                           label="Id Paquete"/>
+                        <b:dataTableColumn value="#{orden.tarifa}"
+                                           width="19%"
+                                           label="Tarifa"/>
+                        <b:dataTableColumn value="#{orden.estado}"
+                                           width="10%"
+                                           style="text-align: center"
+                                           label="Estado"/>
+                        
+                        
+                        <b:dataTableColumn width="10%"
+                                           style="text-align: center"
+                                           label="Accion">
+                            <b:commandButton value="Editar"
+                                             action="#{ordenController.edita(orden.idOrden)}"/>
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                    
+                </h:form>
+                                    
+            </ui:define>
+         
+        </ui:composition>
+        
+    </h:body>
+</html>
+

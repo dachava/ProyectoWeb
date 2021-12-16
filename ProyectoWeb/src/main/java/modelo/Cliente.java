@@ -35,6 +35,12 @@ public class Cliente {
         this.telefono = telefono;
     }
 
+    public Cliente(String nombre, String apellidos, String direccion) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.direccion = direccion;
+    }
+
     public int getIdCliente() {
         return idCliente;
     }

@@ -28,6 +28,15 @@ public class ClienteController extends Cliente implements Serializable {
         return ClienteGestion.getClientes();
     }
      
+        public List<Cliente> getVistaClientes(){
+        return ClienteGestion.getVista();
+    }
+        
+    //DBMS
+       public String dbms(){
+           return "ClienteOutput.xhtml";
+       }
+     
     
      
      //CRUD

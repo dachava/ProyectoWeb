@@ -11,6 +11,13 @@ import modelo.Producto;
 import modelo.Cliente;
 import java.util.ArrayList;
 import controller.ProductoController;
+import java.sql.Array;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.Types;
+import java.util.stream.Stream;
 
 public class ClienteGestion {
     
@@ -133,8 +140,87 @@ public class ClienteGestion {
             Logger.getLogger(ClienteGestion.class.getName()).log(Level.SEVERE,null, ex);
         }
         return false;
+        
+        
     }
     
+    //Lista de vista
+    private static final String SQL_STORED_VISTA= "SELECT * FROM vista_cliente";
+    
+    public static ArrayList<Cliente> getVista (){
+        
+        ArrayList<Cliente> clienteList= new ArrayList<>();
+        
+        try{
+            
+            PreparedStatement consulta=Conexion.getConexion().prepareStatement(SQL_STORED_VISTA);
+            ResultSet rs= consulta.executeQuery();
+            
+            while (rs!=null && rs.next()){
+                clienteList.add(new Cliente (
+                            
+                            rs.getString(1),
+                            rs.getString(2),
+                            rs.getString(3)));
+            }
+            
+        }catch(SQLException ex){
+            Logger.getLogger(ClienteGestion.class.getName()).log(Level.SEVERE,null,ex);
+        }
+        
+        return clienteList;
+    }
+    
+    
+    //DBMS OUTPUT LINE
+    private static final String SQL_STORED_PROC= "execute p_departments_update(90)";
+    
+    public static void dbmsOutput() throws SQLException {
+
+        Statement consulta = Conexion.getConexion().createStatement();
+
+        try {
+
+            // First, we have to enable the DBMS_OUTPUT. Otherwise,
+            // all calls to DBMS_OUTPUT made on our connection won't
+            // have any effect.
+            consulta.executeUpdate("begin dbms_output.enable(); end;");
+
+            // Now, this is the actually interesting procedure call
+            consulta.executeUpdate("execute p_departments_update(90)");
+
+            // After we're done with our call(s), we can proceed to
+            // fetch the SERVEROUTPUT explicitly, using
+            // DBMS_OUTPUT.GET_LINES
+            try (CallableStatement call = Conexion.getConexion().prepareCall(
+                    "declare "
+                    + "  num integer := 1000;"
+                    + "begin "
+                    + "  dbms_output.get_lines(?, num);"
+                    + "end;"
+            )) {
+                call.registerOutParameter(1, Types.ARRAY,
+                        "DBMSOUTPUT_LINESARRAY");
+                call.execute();
+
+                Array array = null;
+                try {
+                    array = call.getArray(1);
+                    Stream.of((Object[]) array.getArray());
+                            
+                } finally {
+                    if (array != null) {
+                        array.free();
+                    }
+                }
+            }
+        } // Don't forget to disable DBMS_OUTPUT for the remaining use
+        // of the connection.
+        finally {
+            consulta.executeUpdate("begin dbms_output.disable(); end;");
+        }
+    }
+}
    
     
-}
+

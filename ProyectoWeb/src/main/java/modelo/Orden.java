@@ -4,15 +4,22 @@ package modelo;
 
 public class Orden {
     
-    public int idOrden;
-    public String descOrden;
+    private int idOrden;
+    private int idCliente;
+    private int idPaquete;
+    private String tarifa;
+    private String estado;
 
-    public Orden() {
+      public Orden() {
     }
 
-    public Orden(int idOrden, String descOrden) {
+    
+    public Orden(int idOrden, int idCliente, int idPaquete, String tarifa, String estado) {
         this.idOrden = idOrden;
-        this.descOrden = descOrden;
+        this.idCliente = idCliente;
+        this.idPaquete = idPaquete;
+        this.tarifa = tarifa;
+        this.estado = estado;
     }
 
     public int getIdOrden() {
@@ -23,12 +30,39 @@ public class Orden {
         this.idOrden = idOrden;
     }
 
-    public String getDescOrden() {
-        return descOrden;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setDescOrden(String descOrden) {
-        this.descOrden = descOrden;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
+
+    public int getIdPaquete() {
+        return idPaquete;
+    }
+
+    public void setIdPaquete(int idPaquete) {
+        this.idPaquete = idPaquete;
+    }
+
+    public String getTarifa() {
+        return tarifa;
+    }
+
+    public void setTarifa(String tarifa) {
+        this.tarifa = tarifa;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+  
+    
     
 }
