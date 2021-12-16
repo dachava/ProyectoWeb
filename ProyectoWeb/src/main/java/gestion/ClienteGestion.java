@@ -188,7 +188,7 @@ public class ClienteGestion {
             consulta.executeUpdate("begin dbms_output.enable(); end;");
 
             // Now, this is the actually interesting procedure call
-            consulta.executeUpdate("execute p_departments_update(90)");
+            consulta.executeUpdate("begin p_cant_paq(22); end;");
 
             // After we're done with our call(s), we can proceed to
             // fetch the SERVEROUTPUT explicitly, using
