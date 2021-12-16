@@ -195,9 +195,17 @@ public class ClienteGestion {
             // DBMS_OUTPUT.GET_LINES
             try (CallableStatement call = Conexion.getConexion().prepareCall(
                     "declare "
-                    + "  num integer := 1000;"
+                    + " l_line varchar2(255); "
+                    + " l_done number; "
+                    + " l_buffer long; "
                     + "begin "
-                    + "  dbms_output.get_lines(?, num);"
+                    + " loop "
+                    + " exit when length(l_buffer)+255 > :maxbytes OR l_done = 1; "
+                    + " dbms_output.get_line( l_line, l_done ); "
+                    + " l_buffer := l_buffer || l_line || chr(10); "
+                    + " end loop; "
+                    + " :done := l_done; "
+                    + " :buffer := l_buffer; "
                     + "end;"
             )) {
                 call.registerOutParameter(1, Types.VARCHAR);
